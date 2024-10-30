@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import '../css/HomePage.css';  // Link to your CSS file
-import companyLogo from '../resources/logo1.png'; 
-import bannerImg1 from '../resources/banner1.jpg'; 
-import bannerImg2 from '../resources/banner2.jpg';
-import bannerImg3 from '../resources/banner3.jpg';
-import cartIcon from '../resources/cart.png'; 
-import userIcon from '../resources/user.png';
-
+import "../css/HomePage.css"; // Link to your CSS file
+import companyLogo from "../resources/logo1.png";
+import bannerImg1 from "../resources/banner1.jpg";
+import bannerImg2 from "../resources/banner2.jpg";
+import bannerImg3 from "../resources/banner3.jpg";
+import cartIcon from "../resources/cart.png";
+import userIcon from "../resources/user.png";
+import arrival from '../resources/arrival-bg.png'
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import card1 from "../resources/card1.avif"
+import AOS from "aos";
+import "aos/dist/aos.css";
 function HomePage() {
   const [giftCards, setGiftCards] = useState([]);
   const [currentBanner, setCurrentBanner] = useState(0);
@@ -17,13 +22,17 @@ function HomePage() {
   const banners = [bannerImg1, bannerImg2, bannerImg3];
   const navigate = useNavigate();
 
+  AOS.init({
+    duration: 1200,
+  })
+  
   const handleProfileClick = () => {
-    navigate('/profile'); // Navigate to the profile page
+    navigate("/profile"); // Navigate to the profile page
   };
 
   useEffect(() => {
     // Check if user is logged in on component mount
-    const token = localStorage.getItem('authToken'); // Check local storage or cookies for token
+    const token = localStorage.getItem("authToken"); // Check local storage or cookies for token
     setIsLoggedIn(!!token); // Set isLoggedIn based on token presence
 
     const fetchGiftCards = async () => {
@@ -49,7 +58,7 @@ function HomePage() {
   }, [banners.length]);
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken'); // Clear token from local storage
+    localStorage.removeItem("authToken"); // Clear token from local storage
     setIsLoggedIn(false); // Update local state
     navigate("/login");
   };
@@ -68,8 +77,9 @@ function HomePage() {
         <div className="navbar-actions">
           {isLoggedIn ? (
             <>
-              <div className="user-section" 
-                onMouseEnter={() => setShowDropdown(true)} 
+              <div
+                className="user-section"
+                onMouseEnter={() => setShowDropdown(true)}
                 onMouseLeave={() => setShowDropdown(false)}
               >
                 <img src={userIcon} alt="User" className="user-icon" />
@@ -89,7 +99,9 @@ function HomePage() {
             </>
           ) : (
             <>
-              <Link to="/login" className="auth-btn">Login / Sign Up</Link>
+              <Link to="/login" className="auth-btn">
+                Login / Sign Up
+              </Link>
               <Link to="/cart" className="cart-btn">
                 <img src={cartIcon} alt="Cart" className="cart-icon" />
               </Link>
@@ -102,21 +114,77 @@ function HomePage() {
       <div className="info-section">
         <a href="/categories">Categories</a>
         <a href="/offers">Offers</a>
-        <a href="/contact">Contact Us</a>
+        <a href="/contact-us">Contact Us</a>
         <a href="/about">About Us</a>
       </div>
 
       {/* Scrollable Image Banner */}
       <div className={`scroll-banner ${isSliding ? "sliding" : ""}`}>
-        <img src={banners[currentBanner]} alt={`Banner ${currentBanner + 1}`} className="banner-image" />
+        <img
+          src={banners[currentBanner]}
+          alt={`Banner ${currentBanner + 1}`}
+          className="banner-image"
+        />
       </div>
-
+      {/* Why Section */}
+      <section class="why_section layout_padding">
+        <div className="container">
+          <div className="heading-container py-5">
+            <h1 className="text-center main-heading">Why Shop With Us</h1>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="card box text-light " data-aos="fade-down">
+                <div class="card-body text-center p-4">
+                  <div>
+                    <LocalShippingIcon style={{ fontSize: "50px" }} />
+                  </div>
+                  <h4 class="card-title box-heading mt-3">Fast Delivery</h4>
+                  <p class="card-text pb-3">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card box text-light" data-aos="fade-down"> 
+                <div class="card-body text-center p-4">
+                  <div>
+                    <LocalShippingIcon style={{ fontSize: "50px" }} />
+                  </div>
+                  <h4 class="card-title box-heading mt-3">Free Shipping</h4>
+                  <p class="card-text pb-3">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card box text-light" data-aos="fade-down">
+                <div class="card-body text-center p-4">
+                  <div>
+                    <WorkspacePremiumIcon style={{ fontSize: "50px" }} />
+                  </div>
+                  <h4 class="card-title box-heading mt-3"> Best Quality</h4>
+                  <p class="card-text pb-3">
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Gift Cards Section */}
       <div className="gift-cards-section">
-        <h2>Available Gift Cards</h2>
-        <div className="gift-card-grid">
+        <h2 className="gift-card-heading main-heading py-5">Available<span> Gift Cards</span></h2>
+        <div className="gift-card-grid"  >
           {giftCards.map((card) => (
             <div key={card.id} className="gift-card">
+              <img src={card1} width={150}/>
               <h3>{card.platform}</h3>
               <p>Price: ${card.price}</p>
             </div>

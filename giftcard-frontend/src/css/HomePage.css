@@ -1,4 +1,4 @@
-/* Ensure body and html take full width and height */
+Ensure body and html take full width and height
 html, body {
     margin: 0;
     padding: 0;
@@ -80,7 +80,7 @@ html, body {
   .scroll-banner {
     position: relative;
     width: 100%;
-    height: 250px; /* Adjust height as needed */
+    height: 380px; /* Adjust height as needed */
     overflow: hidden;
     margin: 20px 0;
     display: flex;
@@ -207,4 +207,25 @@ html, body {
 
 .logout-btn:hover {
   background-color: #c82333;
+}
+
+/* why */
+.main-heading{
+  font-size: 3rem;
+  font-weight: 800;
+
+}
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+.box{
+background-color: #002c3e;
+}
+
+.box-heading{
+  font-weight: 700;
+}
+.gift-card-heading span{
+  color: green;
 }
