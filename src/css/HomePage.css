@@ -1,0 +1,231 @@
+Ensure body and html take full width and height
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Full width navbar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    width: 100%;  /* Full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  /* Logo on the left */
+  .navbar-logo img {
+    width: 120px;
+  }
+  
+  /* Search bar in the middle of navbar */
+  .navbar-search {
+    flex-grow: 1; /* Expand to fill remaining space */
+    margin: 0 20px; /* Space around the search box */
+  }
+  
+  .navbar-search input {
+    width: 100%; /* Full width of search container */
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  /* Login/Sign Up button on the right */
+  .navbar-login {
+    display: flex;
+    align-items: center;
+  }
+  
+  .auth-btn {
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .auth-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Info section: Full width with centered links */
+  .info-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background-color: #f8f9fa;
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+    border-top: 2px solid #e0e0e0;
+  }
+  
+  /* Info links styling */
+  .info-section a {
+    text-decoration: none;
+    color: #28a745;
+    font-size: 16px;
+  }
+  
+  .info-section a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Scrollable banner showing one image at a time */
+  .scroll-banner {
+    position: relative;
+    width: 100%;
+    height: 380px; /* Adjust height as needed */
+    overflow: hidden;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .scroll-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 15s linear;
+  }
+  
+  .sliding {
+    animation: slide 15s linear infinite;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .banner-image {
+    width: 100%;
+    height: 100%; /* Make the image take up the full height of the container */
+    object-fit: cover; /* Ensures the image covers the container from the center */
+    object-position: center; /* Keep the center of the image in view */
+  }
+  
+  /* Full width gift card section */
+  .gift-cards-section {
+    padding: 40px;
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  /* Gift card grid layout */
+  .gift-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 20px; /* Space between cards */
+  }
+  
+  /* Gift card styling */
+  .gift-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .gift-card h3 {
+    color: #28a745;
+  }
+  
+  .gift-card p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Logo on the left with name below */
+.navbar-logo {
+    display: flex;
+    flex-direction: column; /* Stack logo and name vertically */
+    align-items: center;
+  }
+  
+  .logo-name {
+    font-size: 14px;
+    color: white;
+    margin-top: 5px;
+    text-align: center;
+  }
+  
+  /* Cart icon styling */
+  .cart-btn {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Space between buttons */
+  }
+  
+  .cart-icon {
+    width: 24px; /* Adjust size as needed */
+    height: auto;
+  }
+  
+  /* Adjust button styling for consistent layout */
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* User section styling */
+.user-section {
+  display: flex;
+  align-items: center;
+  margin-right: 15px; /* Add margin between user icon and logout button */
+}
+
+.user-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%; /* Make the icon circular */
+}
+
+/* Logout button styling */
+.logout-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #dc3545; /* Red for logout */
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+}
+
+/* why */
+.main-heading{
+  font-size: 3rem;
+  font-weight: 800;
+
+}
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+.box{
+background-color: #002c3e;
+}
+
+.box-heading{
+  font-weight: 700;
+}
+.gift-card-heading span{
+  color: green;
+}
