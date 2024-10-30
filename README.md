@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+High-Level Design (HLD)
+1. Architecture Overview:
+Frontend:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Framework: React JS
+Components: Homepage, AuthPage, Product Listing, Cart, User Profile, and Checkout Page.
+State Management: React Context API or Redux (for managing state across components).
+Routing: React Router (for navigating between different pages).
+Backend:
 
-## Available Scripts
+Framework: Java Spring Boot
+Components: REST API Services, Authentication Service, User Management, Product Management, Order Processing.
+Database: MySQL (for storing user data, product information, orders, etc.).
+Security: Spring Security (for authentication and authorization).
+External Services:
 
-In the project directory, you can run:
+Payment Gateway: For handling payments.
+Email Service: For sending order confirmations and notifications.
+2. System Components:
+Frontend:
 
-### `npm start`
+Homepage: Displays the gift cards with options for Zomato, Swiggy, Flipkart, Amazon.
+AuthPage: Allows users to log in or register.
+Product Listing Page: Shows details of available gift cards.
+Cart Page: Users can view and manage their selected gift cards.
+Checkout Page: Users can finalize their purchase.
+Profile Page: Users can view and edit their personal details.
+Backend:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+User Management Service: Handles user authentication, registration, and profile management.
+Product Service: Manages gift card details and availability.
+Order Service: Processes orders and handles payment transactions.
+Email Service: Sends out order confirmations and other notifications.
+3. Data Flow:
+User Interaction:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Users visit the Homepage to browse available gift cards.
+They add gift cards to their cart and proceed to the Checkout Page.
+Backend Interaction:
 
-### `npm test`
+Frontend makes API calls to the backend services for retrieving gift card details, managing user sessions, processing orders, etc.
+Payment transactions are processed through a payment gateway.
+Post-Transaction:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Confirmation and notifications are sent to users via email.
+Order details are saved in the database.
+Low-Level Design (LLD)
+1. Frontend Components:
+Homepage Component:
 
-### `npm run build`
+Displays a carousel with images.
+Shows available gift cards with options to view details or add to cart.
+AuthPage Component:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Contains forms for user login and registration.
+Manages authentication state and redirects upon successful login.
+Product Listing Component:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Displays gift card details fetched from the backend.
+Allows users to add items to their cart.
+Cart Component:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Lists items added to the cart.
+Provides options to update quantities or remove items.
+Checkout Component:
 
-### `npm run eject`
+Collects user shipping and payment information.
+Processes the payment and confirms the order.
+Profile Component:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Allows users to view and update their profile information.
+2. Backend Components:
+User Management Service:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Endpoints:
+POST /api/users/register: Register a new user.
+POST /api/users/login: Authenticate a user.
+GET /api/users/{id}: Retrieve user profile details.
+PUT /api/users/{id}: Update user profile.
+Product Service:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Endpoints:
+GET /api/products: Retrieve list of available gift cards.
+GET /api/products/{id}: Retrieve details of a specific gift card.
+Order Service:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Endpoints:
+POST /api/orders: Create a new order.
+GET /api/orders/{id}: Retrieve order details.
+PUT /api/orders/{id}: Update order status.
+Email Service:
 
-## Learn More
+Endpoints:
+POST /api/email/send: Send an email notification.
+3. Database Schema:
+User Table:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+id: UUID
+username: String
+passwordHash: String
+email: String
+createdAt: Timestamp
+updatedAt: Timestamp
+Product Table:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+id: UUID
+name: String
+description: String
+price: Decimal
+imageUrl: String
+createdAt: Timestamp
+updatedAt: Timestamp
+Order Table:
 
-### Code Splitting
+id: UUID
+userId: UUID
+productIds: Array of UUIDs
+totalAmount: Decimal
+status: String
+createdAt: Timestamp
+updatedAt: Timestamp
+Implementation Notes:
+Frontend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Use React Hooks for managing state and lifecycle events.
+Apply CSS-in-JS or SCSS for styling components.
+Backend:
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Implement RESTful APIs following best practices.
+Use JWT tokens for stateless authentication.
+Ensure proper exception handling and logging.
